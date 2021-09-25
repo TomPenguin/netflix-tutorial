@@ -16,6 +16,8 @@ type Movie = {
   backdrop_path: string
 }
 
+const BASE_URL = "https://image.tmdb.org/t/p/original"
+
 const Row = ({ title, endpoint, isLargeRow }: Props) => {
   const [movies, setMovies] = useState<Movie[]>([])
 
@@ -28,9 +30,23 @@ const Row = ({ title, endpoint, isLargeRow }: Props) => {
     fetchData()
   }, [endpoint])
 
-  console.log({ movies, title, isLargeRow })
-
-  return <div className="Row" />
+  return (
+    <div className="Row">
+      <h2>{title}</h2>
+      <div className="Row-posters">
+        {movies.map((movie) => (
+          <img
+            key={movie.id}
+            className={`Row-poster ${isLargeRow && "Row-poster-large"}`}
+            src={`${BASE_URL}${
+              isLargeRow ? movie.poster_path : movie.backdrop_path
+            }`}
+            alt={movie.name}
+          />
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default Row
