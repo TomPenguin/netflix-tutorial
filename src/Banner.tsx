@@ -44,8 +44,6 @@ const Banner = () => {
 
         <div className="Banner-description">{movie?.overview}</div>
       </div>
-
-      <div className="Banner-fadeBottom"></div>
     </header>
   )
 }
