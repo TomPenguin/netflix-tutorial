@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css"
+import endpoints from "./endpoints.js"
+import Row from "./Row"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Row title="Top Rated" endpoint={endpoints.fetchTopRated} />
+      <Row title="Horror Movies" endpoint={endpoints.fetchHorrorMovies} />
+      <Row title="Comedy Movies" endpoint={endpoints.fetchComedyMovies} />
+      <Row
+        title="Documentary Movies"
+        endpoint={endpoints.fetchDocumentaryMovies}
+      />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

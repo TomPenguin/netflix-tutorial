@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react"
-import axios from "infra/axios.js"
-import endpoints from "endpoints.js"
-
-const endpoint = endpoints.fetchTrending
+import axios from "/Users/mochi.aota/Documents/practice/netflix-tutorial/src/infra/axios.js"
 
 type Props = {
   title: string
-  fetchUrl: string
+  endpoint: string
   isLargeRow?: boolean
 }
 
@@ -19,7 +16,7 @@ type Movie = {
   backdrop_path: string
 }
 
-export const Row = ({ title, fetchUrl }: Props) => {
+const Row = ({ title, endpoint, isLargeRow }: Props) => {
   const [movies, setMovies] = useState<Movie[]>([])
 
   useEffect(() => {
@@ -29,9 +26,11 @@ export const Row = ({ title, fetchUrl }: Props) => {
       return request
     }
     fetchData()
-  })
+  }, [endpoint])
 
-  console.log(movies)
+  console.log({ movies, title, isLargeRow })
 
   return <div className="Row" />
 }
+
+export default Row
