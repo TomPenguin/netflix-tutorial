@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "/Users/mochi.aota/Documents/practice/netflix-tutorial/src/infra/axios.js"
+import "./Row.scss"
 
 type Props = {
   title: string
