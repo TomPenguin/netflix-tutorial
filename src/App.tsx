@@ -10,8 +10,9 @@ function App() {
       <Nav />
       <Banner />
       <Row title="Top Rated" endpoint={endpoints.fetchTopRated} />
-      <Row title="Horror Movies" endpoint={endpoints.fetchHorrorMovies} />
+      <Row title="Drama Movies" endpoint={endpoints.fetchDramaMovies} />
       <Row title="Comedy Movies" endpoint={endpoints.fetchComedyMovies} />
+      <Row title="Romance Movies" endpoint={endpoints.fetchRomanceMovies} />
       <Row
         title="Documentary Movies"
         endpoint={endpoints.fetchDocumentaryMovies}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "infra/axios"
 import "./Row.scss"
 import { IMAGE_BASE_URL } from "consts"
+import endpoints from "endpoints"
 
 type Props = {
   title: string
@@ -18,8 +19,17 @@ type Movie = {
   backdrop_path: string
 }
 
+type TrailerOptions = {
+  height: string
+  width: string
+  playerVars: {
+    autoplay?: 0 | 1
+  }
+}
+
 const Row = ({ title, endpoint, isLargeRow }: Props) => {
   const [movies, setMovies] = useState<Movie[]>([])
+  const [trailerUrl, setTrailerUrl] = useState<string | null>("")
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +39,26 @@ const Row = ({ title, endpoint, isLargeRow }: Props) => {
     }
     fetchData()
   }, [endpoint])
+
+  const opts: TrailerOptions = {
+    height: "390",
+    width: "640",
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+    },
+  }
+  console.log(opts)
+
+  const handleClick = async (movie: Movie) => {
+    if (trailerUrl) {
+      setTrailerUrl("")
+    } else {
+      const endpoint = endpoints.fetchTrailerUrl.replace(":movieId", movie.id)
+      const response = await axios.get(endpoint)
+      setTrailerUrl(response.data.results[0]?.key)
+    }
+  }
 
   return (
     <div className="Row">
@@ -42,6 +72,7 @@ const Row = ({ title, endpoint, isLargeRow }: Props) => {
               isLargeRow ? movie.poster_path : movie.backdrop_path
             }`}
             alt={movie.name}
+            onClick={() => handleClick(movie)}
           />
         ))}
       </div>
