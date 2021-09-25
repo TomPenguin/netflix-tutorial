@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import axios from "./infra/axios.js"
-import endpoints from "./endpoints.js"
-import { IMAGE_BASE_URL } from "./consts"
+import axios from "infra/axios.js"
+import endpoints from "endpoints.js"
+import { IMAGE_BASE_URL } from "consts"
 import "./Banner.scss"
 
 type MovieProps = {

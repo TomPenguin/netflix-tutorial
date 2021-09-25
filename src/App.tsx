@@ -1,7 +1,7 @@
 import "./App.css"
 import endpoints from "./endpoints"
-import Banner from "./Banner"
-import Row from "./Row"
+import Banner from "./components/Banner"
+import Row from "./components/Row"
 
 function App() {
   return (

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import axios from "./infra/axios"
+import axios from "infra/axios"
 import "./Row.scss"
-import { IMAGE_BASE_URL } from "./consts"
+import { IMAGE_BASE_URL } from "consts"
 
 type Props = {
   title: string
