@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import axios from "/Users/mochi.aota/Documents/practice/netflix-tutorial/src/infra/axios.js"
+import axios from "./infra/axios"
 import "./Row.scss"
+import { IMAGE_BASE_URL } from "./consts"
 
 type Props = {
   title: string
@@ -16,8 +17,6 @@ type Movie = {
   poster_path: string
   backdrop_path: string
 }
-
-const BASE_URL = "https://image.tmdb.org/t/p/original"
 
 const Row = ({ title, endpoint, isLargeRow }: Props) => {
   const [movies, setMovies] = useState<Movie[]>([])
@@ -39,7 +38,7 @@ const Row = ({ title, endpoint, isLargeRow }: Props) => {
           <img
             key={movie.id}
             className={`Row-poster ${isLargeRow && "Row-poster-large"}`}
-            src={`${BASE_URL}${
+            src={`${IMAGE_BASE_URL}${
               isLargeRow ? movie.poster_path : movie.backdrop_path
             }`}
             alt={movie.name}
